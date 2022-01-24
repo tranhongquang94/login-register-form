@@ -6,7 +6,6 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
 const passport = require("passport");
-const path = require("path");
 
 const app = express();
 
@@ -31,10 +30,10 @@ let mysql = require('mysql2');
 
 //Create a pool of connection to MySQL. Connection Pool help manage connection better than creating a single connection.
 let connection = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'stomble_test'
+    host: 'us-cdbr-east-05.cleardb.net',
+    user: 'bfbfabd0f50e94',
+    password: '4699020f',
+    database: 'heroku_7bc79f3a37a5f85'
   });
 
 
