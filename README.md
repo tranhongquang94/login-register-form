@@ -37,9 +37,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Homepage][product-screenshot]]()
-[![Homepage][login-screenshot]]()
-[![Homepage][register-screenshot]]()
+[![product-screenshot]]()
+[![login-screenshot]]()
+[![register-screenshot]]()
 
 ### Built With
 
