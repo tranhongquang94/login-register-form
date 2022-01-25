@@ -63,7 +63,6 @@ app.post('/api/login', (req,res) => {
             res.status(400).send(err);
         };
         res.status(200).send(results);
-        console.log(req.session)
     })
 });
 
@@ -81,7 +80,6 @@ app.get('/api/callback',
 
 // Page redirected after login successful
 app.get('/api/success' , isLoggedIn, ( req, res) => {
-    console.log(res.auth)
     res.status(200).redirect(`/?user=${req.user.displayName}`);
 })
 
@@ -91,11 +89,11 @@ app.get('/api/logout', (req, res) => {
     res.status(200).send("logout successfully");
 });
 
-app.use(express.static(path.join(__dirname,"client","build")));
+// app.use(express.static(path.join(__dirname,"client","build")));
 
-app.get("*",(req,res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+// app.get("*",(req,res) => {
+//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
 
 app.listen(PORT,() => {
     console.log(`Express App listen at port: ${PORT}`);
