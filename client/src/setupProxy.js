@@ -2,7 +2,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
     app.use('/api',createProxyMiddleware({
-        target: "https://login-register-server.herokuapp.com/",
+        target: "https://locahost:8001",
         changeOrigin: true
     }))
 }
