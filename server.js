@@ -45,12 +45,27 @@ function isLoggedIn (req, res, next) {
 // Register API endpoint
 app.post('/api/register', (req,res) => {
     const {fullName, email, password} = req.body;
-    connection.query("INSERT INTO users(full_name, email, password) VALUES (? , ? ,?)", [fullName, email, password],(err, results) => {
+    connection.query("SELECT * FROM users WHERE email = ?", [email], (err, results) => {
         if (err) {
-            console.log(err);
             res.status(400).send(err);
         };
-        res.status(200).send(results);
+
+        if (results.length) {
+            res.status(200).send({
+                message: "This email is used for another account. Please choose a different email",
+                showRegister: true,
+            })
+        } else {
+            connection.query("INSERT INTO users(full_name, email, password) VALUES (? , ? ,?)", [fullName, email, password],(err, results) => {
+                if (err) {
+                    res.status(400).send(err);
+                };
+                res.status(200).send({
+                    message: "Successfully created account",
+                    showRegister: false
+                });
+            })
+        }
     })
 });
 

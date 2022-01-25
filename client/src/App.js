@@ -74,12 +74,22 @@ function App() {
       .post(actionUrl, { email, password, fullName })
       .then((res) => {
         if (res.data.length) {
+          // Login
           setIsLoggedIn(true);
           setUsername(res.data[0].full_name);
           setShowForm(false);
           localStorage.setItem('user', res.data[0].full_name);
         } else {
-          alert("Username or password is incorrect!");
+          if (actionUrl === "api/login") {
+            alert("Username or password is incorrect!");
+          }
+          //Register
+          else {
+            alert(`${res.data.message}`);
+            if (!res.data.showRegister) {
+              setShowRegister(false);
+            }
+          }
         }
       })
       .catch((err) => console.log(err));
