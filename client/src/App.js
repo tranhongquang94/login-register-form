@@ -9,6 +9,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
+/**
+ * Styling for MUI elements
+ */
 const navButton = { mt: "1rem", mr: "2rem" };
 const formStyle = {
   mt: 1,
@@ -31,12 +34,19 @@ const googleLinkStyle = {
   },
 };
 
+
 function App() {
+  /**
+   * Initialize State
+  */
   const [showForm, setShowForm] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   
+  /**
+   * Run at start up to check URL params.
+  */
   useEffect(() => {
     const param = new URLSearchParams(window.location.search);
     if (param.get('user')) {
@@ -46,6 +56,9 @@ function App() {
     }
   }, []);
 
+  /**
+   * Save user to localStorage if user is logged in.
+  */
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
@@ -55,6 +68,9 @@ function App() {
     }
   },[])
 
+  /**
+   * Send request to login or register based on types of form
+  */
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -74,7 +90,7 @@ function App() {
       .post(actionUrl, { email, password, fullName })
       .then((res) => {
         if (res.data.length) {
-          // Login
+          // Run when log in successful
           setIsLoggedIn(true);
           setUsername(res.data[0].full_name);
           setShowForm(false);
@@ -95,6 +111,9 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  /**
+   * Log out function - remove user info from local storage and reset application state 
+   */ 
   const handleLogOut = () => {
     axios.get('api/logout')
     .then(res => {

@@ -2,7 +2,7 @@ const passport = require("passport");
 require("dotenv").config();
 
 /**
- * Passport Configuration  - Set up the 
+ * Passport Configuration  - Set up the Google Strategy with credentials
  */
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -17,6 +17,9 @@ passport.use(new GoogleStrategy({
   }
 ));
 
+/**
+ * Utility to handle session
+*/
  passport.serializeUser(function (user, done) {
    done(null, user);
  });
