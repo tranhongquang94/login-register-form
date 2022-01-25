@@ -3,7 +3,6 @@
 */
 
 const express = require("express");
-const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
 const passport = require("passport");
 
@@ -18,7 +17,6 @@ const PORT = process.env.PORT || 8001;
 //Receive JSON data and Form data, map it to req.body object.
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cookieParser());
 
 // Initialize the express session and passport session function
 app.use(expressSession({secret: process.env.SESSION_SECRET}));
