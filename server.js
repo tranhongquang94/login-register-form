@@ -89,11 +89,11 @@ app.get('/api/logout', (req, res) => {
     res.status(200).send("logout successfully");
 });
 
-// app.use(express.static(path.join(__dirname,"client","build")));
+app.use(express.static(path.join(__dirname,"client","build")));
 
-// app.get("*",(req,res) => {
-//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-// });
+app.get("*",(req,res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(PORT,() => {
     console.log(`Express App listen at port: ${PORT}`);
